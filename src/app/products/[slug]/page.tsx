@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import { products, bundle } from "@/lib/products";
 import type { Metadata } from "next";
 
+const siteUrl = "https://ai-prompt-architect-nine.vercel.app";
+
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
@@ -18,6 +20,17 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: `${product.title} — AI Prompt Architect`,
     description: product.description,
+    openGraph: {
+      title: `${product.title} — AI Prompt Architect`,
+      description: product.description,
+      url: `${siteUrl}/products/${product.slug}`,
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${product.title} — AI Prompt Architect`,
+      description: product.description,
+    },
   };
 }
 
@@ -29,8 +42,27 @@ export default async function ProductPage({ params }: PageProps) {
     notFound();
   }
 
+  const productJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.title,
+    description: product.description,
+    url: `${siteUrl}/products/${product.slug}`,
+    brand: { "@type": "Brand", name: "AI Prompt Architect" },
+    offers: {
+      "@type": "Offer",
+      price: product.price,
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+    },
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+      />
       {/* Product Hero */}
       <section className="relative overflow-hidden bg-navy pt-32 pb-20">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-navy-light/50 via-navy to-navy-dark" />

@@ -1,10 +1,32 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
+const siteUrl = "https://ai-prompt-architect-nine.vercel.app";
+
 export const metadata: Metadata = {
-  title: "AI Prompt Architect — Framework-Powered Prompt Packs",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "AI Prompt Architect — Framework-Powered Prompt Packs",
+    template: "%s | AI Prompt Architect",
+  },
   description:
     "Give your AI a framework. Get consistent results. Prompt packs built on proven business books by Jeff Walker, Russell Brunson, Jim Edwards, and Joe Pulizzi.",
+  openGraph: {
+    title: "AI Prompt Architect — Framework-Powered Prompt Packs",
+    description:
+      "Give your AI a framework. Get consistent results. Prompt packs built on proven business books.",
+    url: siteUrl,
+    siteName: "AI Prompt Architect",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AI Prompt Architect — Framework-Powered Prompt Packs",
+    description:
+      "Give your AI a framework. Get consistent results. Prompt packs built on proven business books.",
+  },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({
@@ -16,7 +38,22 @@ export default function RootLayout({
     <html lang="en">
       <body className="antialiased">
         <Header />
-        <main>{children}</main>
+        <main>
+          {children}
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "WebSite",
+                name: "AI Prompt Architect",
+                url: siteUrl,
+                description:
+                  "Framework-powered prompt packs built on proven business books.",
+              }),
+            }}
+          />
+        </main>
         <Footer />
       </body>
     </html>

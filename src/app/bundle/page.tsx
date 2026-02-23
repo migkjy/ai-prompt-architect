@@ -2,14 +2,46 @@ import Link from "next/link";
 import { products, bundle } from "@/lib/products";
 import type { Metadata } from "next";
 
+const siteUrl = "https://ai-prompt-architect-nine.vercel.app";
+
 export const metadata: Metadata = {
   title: "AI Prompt Architect Bundle — All 6 Packs",
   description: bundle.description,
+  openGraph: {
+    title: "AI Prompt Architect Bundle — All 6 Packs",
+    description: bundle.description,
+    url: `${siteUrl}/bundle`,
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AI Prompt Architect Bundle — All 6 Packs",
+    description: bundle.description,
+  },
 };
 
 export default function BundlePage() {
+  const bundleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: "AI Prompt Architect Bundle — All 6 Packs",
+    description: bundle.description,
+    url: `${siteUrl}/bundle`,
+    brand: { "@type": "Brand", name: "AI Prompt Architect" },
+    offers: {
+      "@type": "Offer",
+      price: bundle.price,
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+    },
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(bundleJsonLd) }}
+      />
       {/* Hero */}
       <section className="relative overflow-hidden bg-navy pt-32 pb-20">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gold/5 via-navy to-navy-dark" />
