@@ -51,20 +51,19 @@ export default function BundlePage() {
           </span>
           <h1 className="mb-6 text-4xl font-bold leading-tight tracking-tight text-text-primary sm:text-5xl">
             The Complete{" "}
-            <span className="text-gold">AI Prompt Architect</span> Bundle
+            <span className="gradient-gold">AI Prompt Architect</span> Bundle
           </h1>
           <p className="mx-auto mb-10 max-w-2xl text-lg text-text-secondary">
             {bundle.description}
           </p>
-          <a
-            href={bundle.checkoutUrl}
-            className="inline-block rounded-lg bg-gold px-10 py-4 text-lg font-semibold text-navy-dark transition-colors hover:bg-gold-light"
+          <Link
+            href="/checkout?bundle=true"
+            className="animate-pulse-subtle inline-block rounded-lg bg-gold px-10 py-4 text-lg font-semibold text-navy-dark transition-colors hover:bg-gold-light"
           >
             Get the Complete Bundle — ${bundle.price}
-          </a>
+          </Link>
           <p className="mt-3 text-sm text-text-secondary">
-            <span className="line-through">${bundle.originalPrice}</span>{" "}
-            <span className="text-gold">Save 17%</span>
+            Includes bonus AI Skills Guide + Notion Templates not in individual packs
           </p>
         </div>
       </section>
@@ -83,7 +82,7 @@ export default function BundlePage() {
             {products.map((product) => (
               <div
                 key={product.slug}
-                className="rounded-xl border border-white/10 bg-surface p-6 transition-all hover:border-gold/20"
+                className="card-glow rounded-xl border border-white/10 bg-surface p-6"
               >
                 <p className="mb-2 text-xs font-medium uppercase tracking-wider text-gold">
                   {product.book} by {product.author}
@@ -131,11 +130,17 @@ export default function BundlePage() {
             </div>
             <div className="flex items-center justify-between rounded-lg border border-white/10 bg-surface px-6 py-4">
               <span className="text-text-secondary">
-                6 individual packs purchased separately
+                6 individual packs (if bought separately)
               </span>
               <span className="text-text-secondary line-through">
-                ${bundle.originalPrice}
+                ${bundle.originalPrice.toFixed(2)}
               </span>
+            </div>
+            <div className="flex items-center justify-between rounded-lg border border-white/10 bg-surface px-6 py-4">
+              <span className="text-text-secondary">
+                Bonus: AI Skills Guide + Notion Templates
+              </span>
+              <span className="text-gold font-medium">Included</span>
             </div>
             <div className="flex items-center justify-between rounded-lg border border-gold/30 bg-gold/10 px-6 py-5">
               <span className="text-lg font-bold text-text-primary">
@@ -146,12 +151,12 @@ export default function BundlePage() {
               </span>
             </div>
           </div>
-          <a
-            href={bundle.checkoutUrl}
-            className="inline-block rounded-lg bg-gold px-10 py-4 text-lg font-semibold text-navy-dark transition-colors hover:bg-gold-light"
+          <Link
+            href="/checkout?bundle=true"
+            className="animate-pulse-subtle inline-block rounded-lg bg-gold px-10 py-4 text-lg font-semibold text-navy-dark transition-colors hover:bg-gold-light"
           >
             Get the Complete Bundle — ${bundle.price}
-          </a>
+          </Link>
         </div>
       </section>
 
@@ -163,7 +168,7 @@ export default function BundlePage() {
             <Link href="/#products" className="text-gold hover:underline">
               Browse individual packs
             </Link>{" "}
-            starting at $9.99 each.
+            starting at $0.99 each.
           </p>
         </div>
       </section>

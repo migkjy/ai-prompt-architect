@@ -13,7 +13,7 @@ export default function HomePage() {
           </span>
           <h1 className="mb-6 text-4xl font-bold leading-tight tracking-tight text-text-primary sm:text-5xl md:text-6xl">
             Give Your AI a Framework.{" "}
-            <span className="text-gold">Get Consistent Results.</span>
+            <span className="gradient-gold">Get Consistent Results.</span>
           </h1>
           <p className="mx-auto mb-10 max-w-2xl text-lg text-text-secondary">
             Most people ask AI open-ended questions and get generic answers.
@@ -29,8 +29,8 @@ export default function HomePage() {
               See the Prompt Packs
             </a>
             <Link
-              href="/bundle"
-              className="rounded-lg bg-gold px-8 py-3 font-semibold text-navy-dark transition-colors hover:bg-gold-light"
+              href="/checkout?bundle=true"
+              className="animate-pulse-subtle rounded-lg bg-gold px-8 py-3 font-semibold text-navy-dark transition-colors hover:bg-gold-light"
             >
               Get All 6 Packs — ${bundle.price}
             </Link>
@@ -96,7 +96,7 @@ export default function HomePage() {
             {products.map((product) => (
               <div
                 key={product.slug}
-                className="group flex flex-col rounded-xl border border-white/10 bg-surface p-6 transition-all hover:border-gold/30 hover:shadow-[0_0_40px_rgba(226,183,20,0.08)]"
+                className="card-glow group flex flex-col rounded-xl border border-white/10 bg-surface p-6"
               >
                 <div className="mb-4">
                   <p className="mb-1 text-xs font-medium uppercase tracking-wider text-gold">
@@ -127,13 +127,13 @@ export default function HomePage() {
                 </ul>
                 <div className="flex items-center justify-between">
                   <span className="text-2xl font-bold text-text-primary">
-                    ${product.price}
+                    ${product.price.toFixed(2)}
                   </span>
                   <Link
-                    href={`/products/${product.slug}`}
+                    href={`/checkout?product=${product.slug}`}
                     className="rounded-lg bg-gold/10 px-4 py-2 text-sm font-semibold text-gold transition-colors hover:bg-gold/20"
                   >
-                    View Pack
+                    Buy Pack
                   </Link>
                 </div>
               </div>
@@ -154,13 +154,13 @@ export default function HomePage() {
             the best marketers, copywriters, and strategists in the world.
           </p>
           <Link
-            href="/bundle"
-            className="inline-block rounded-lg bg-gold px-8 py-4 text-lg font-semibold text-navy-dark transition-colors hover:bg-gold-light"
+            href="/checkout?bundle=true"
+            className="animate-pulse-subtle inline-block rounded-lg bg-gold px-8 py-4 text-lg font-semibold text-navy-dark transition-colors hover:bg-gold-light"
           >
             Get the Complete Bundle — ${bundle.price}
           </Link>
           <p className="mt-4 text-sm text-text-secondary">
-            All 6 packs. 17% off. One purchase.
+            All 6 packs + AI Skills Guide + Notion Templates. One purchase.
           </p>
         </div>
       </section>

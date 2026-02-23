@@ -87,14 +87,14 @@ export default async function ProductPage({ params }: PageProps) {
               </p>
               <div className="flex items-center gap-6">
                 <span className="text-4xl font-bold text-text-primary">
-                  ${product.price}
+                  ${product.price.toFixed(2)}
                 </span>
-                <a
-                  href={product.checkoutUrl}
-                  className="rounded-lg bg-gold px-8 py-3 font-semibold text-navy-dark transition-colors hover:bg-gold-light"
+                <Link
+                  href={`/checkout?product=${product.slug}`}
+                  className="animate-pulse-subtle rounded-lg bg-gold px-8 py-3 font-semibold text-navy-dark transition-colors hover:bg-gold-light"
                 >
                   Buy This Pack
-                </a>
+                </Link>
               </div>
             </div>
 
@@ -169,19 +169,19 @@ export default async function ProductPage({ params }: PageProps) {
       {/* Bundle Upsell */}
       <section className="bg-navy py-16">
         <div className="mx-auto max-w-3xl px-6 text-center">
-          <div className="rounded-xl border border-gold/20 bg-surface p-8 shadow-[0_0_40px_rgba(226,183,20,0.05)]">
+          <div className="card-glow rounded-xl border border-gold/20 bg-surface p-8 shadow-[0_0_40px_rgba(226,183,20,0.05)]">
             <h3 className="mb-2 text-xl font-bold text-text-primary">
               Want all 6 packs?
             </h3>
             <p className="mb-6 text-text-secondary">
-              Get the complete AI Prompt Architect Bundle for ${bundle.price}{" "}
-              instead of ${bundle.originalPrice}. Save 17%.
+              Get the complete AI Prompt Architect Bundle for ${bundle.price}.
+              Includes bonus AI Skills Guide and Notion Templates.
             </p>
             <Link
-              href="/bundle"
+              href="/checkout?bundle=true"
               className="inline-block rounded-lg bg-gold px-8 py-3 font-semibold text-navy-dark transition-colors hover:bg-gold-light"
             >
-              See the Bundle
+              Get the Bundle — ${bundle.price}
             </Link>
           </div>
         </div>
